@@ -1,0 +1,379 @@
+/* ============================================================================
+   EcoLoop — Design System
+   Aesthetic: Editorial earth-tone. Serius, jurnalistik, infrastruktur.
+   Bukan "AI-slop tropical green dengan emoji daun".
+   ============================================================================ */
+
+:root {
+  /* Color tokens — earth palette */
+  --c-bg:           #F5F0E6;   /* cream / paper */
+  --c-bg-deep:      #EBE3D2;   /* aged paper */
+  --c-ink:          #1F2A1C;   /* near-black with green undertone */
+  --c-ink-soft:     #4A554A;   /* secondary text */
+  --c-ink-mute:     #8B8E83;   /* tertiary text */
+  --c-line:         #D6CDB8;   /* hairline borders */
+  --c-line-strong:  #B5AB95;   /* emphasized borders */
+
+  --c-accent:       #C2562B;   /* terracotta — pickup actions, CTA */
+  --c-accent-deep:  #8E3B1B;   /* terracotta dark — hover, text */
+  --c-moss:         #2D3B2A;   /* deep moss — primary brand */
+  --c-moss-soft:    #5D6E54;   /* moss tint */
+  --c-clay:         #B89B6E;   /* clay/sand — neutral accent */
+
+  /* Status colors */
+  --c-pending:      #B89B6E;   /* clay */
+  --c-confirmed:    #5D6E54;   /* moss-soft */
+  --c-collected:    #2D3B2A;   /* deep moss */
+  --c-certified:    #C2562B;   /* terracotta — final achievement */
+
+  /* Typography */
+  --font-display: "Fraunces", "Times New Roman", serif;
+  --font-body:    "Inter Tight", system-ui, -apple-system, sans-serif;
+  --font-mono:    "JetBrains Mono", "Menlo", monospace;
+
+  /* Spacing scale (8px base) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Layout */
+  --max-w: 1120px;
+  --radius: 2px;     /* sharp, not rounded — editorial vibe */
+  --radius-pill: 999px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+
+body {
+  background: var(--c-bg);
+  color: var(--c-ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.55;
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Subtle paper texture via CSS — no images needed */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+  background-image:
+    radial-gradient(rgba(74, 85, 74, 0.06) 1px, transparent 1px),
+    radial-gradient(rgba(184, 155, 110, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px, 17px 17px;
+  background-position: 0 0, 12px 8px;
+}
+
+#root { position: relative; z-index: 1; min-height: 100vh; }
+
+/* ----------------------------------------------------------------------------
+   TYPOGRAPHY
+---------------------------------------------------------------------------- */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: var(--c-ink);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  font-style: italic;
+  font-weight: 300;
+}
+h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 500; }
+h3 { font-size: 1.4rem; font-weight: 600; letter-spacing: -0.01em; }
+h4 { font-size: 1rem; font-weight: 600; font-family: var(--font-body); letter-spacing: 0.02em; }
+
+p { color: var(--c-ink-soft); }
+
+a { color: inherit; text-decoration: none; }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-ink-mute);
+  font-weight: 500;
+}
+
+.serif-italic {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* ----------------------------------------------------------------------------
+   LAYOUT PRIMITIVES
+---------------------------------------------------------------------------- */
+.container {
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
+
+.hairline { border-bottom: 1px solid var(--c-line); }
+.hairline-top { border-top: 1px solid var(--c-line); }
+
+/* ----------------------------------------------------------------------------
+   BUTTONS
+---------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0.85rem 1.4rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.18s ease;
+  background: transparent;
+  color: var(--c-ink);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--c-ink);
+  color: var(--c-bg);
+  border-color: var(--c-ink);
+}
+.btn-primary:hover { background: var(--c-moss); border-color: var(--c-moss); }
+
+.btn-accent {
+  background: var(--c-accent);
+  color: #fff;
+  border-color: var(--c-accent);
+}
+.btn-accent:hover { background: var(--c-accent-deep); border-color: var(--c-accent-deep); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--c-ink);
+  border-color: var(--c-line-strong);
+}
+.btn-ghost:hover { background: var(--c-bg-deep); }
+
+.btn-block { width: 100%; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Arrow-after btn (editorial detail) */
+.btn-link {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--c-accent-deep);
+  border-bottom: 1px solid var(--c-accent);
+  padding-bottom: 1px;
+}
+.btn-link:hover { color: var(--c-ink); border-color: var(--c-ink); }
+
+/* ----------------------------------------------------------------------------
+   FORMS
+---------------------------------------------------------------------------- */
+.field { display: block; margin-bottom: var(--space-4); }
+
+.field-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-ink-mute);
+  margin-bottom: var(--space-2);
+  font-weight: 500;
+}
+
+.field-input,
+.field-select {
+  width: 100%;
+  padding: 0.75rem 0.85rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--c-ink);
+  background: transparent;
+  border: 1px solid var(--c-line-strong);
+  border-radius: var(--radius);
+  transition: border-color 0.15s;
+}
+
+.field-input:focus,
+.field-select:focus {
+  outline: none;
+  border-color: var(--c-ink);
+}
+
+.field-input::placeholder { color: var(--c-ink-mute); }
+
+.field-help {
+  font-size: 0.8rem;
+  color: var(--c-ink-mute);
+  margin-top: var(--space-2);
+}
+
+.field-error {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--c-accent-deep);
+  margin-top: var(--space-2);
+}
+
+/* Device picker grid */
+.device-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+}
+
+.device-chip {
+  padding: 0.85rem 0.5rem;
+  border: 1px solid var(--c-line-strong);
+  border-radius: var(--radius);
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--c-ink);
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+}
+.device-chip:hover { border-color: var(--c-ink); }
+.device-chip[data-active="true"] {
+  background: var(--c-ink);
+  color: var(--c-bg);
+  border-color: var(--c-ink);
+}
+
+/* ----------------------------------------------------------------------------
+   STATUS PILLS
+---------------------------------------------------------------------------- */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid currentColor;
+  font-weight: 500;
+}
+
+.status::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.status[data-status="pending"]   { color: var(--c-pending); }
+.status[data-status="confirmed"] { color: var(--c-confirmed); }
+.status[data-status="collected"] { color: var(--c-collected); }
+.status[data-status="certified"] { color: var(--c-certified); background: rgba(194, 86, 43, 0.08); }
+
+/* ----------------------------------------------------------------------------
+   CARDS
+---------------------------------------------------------------------------- */
+.card {
+  background: var(--c-bg);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius);
+  padding: var(--space-6);
+}
+
+.card-flush {
+  background: var(--c-bg);
+  border-top: 1px solid var(--c-line);
+  padding: var(--space-6) 0;
+}
+
+/* ----------------------------------------------------------------------------
+   LEAFLET — override default styles to match palette
+---------------------------------------------------------------------------- */
+.leaflet-container {
+  font-family: var(--font-body) !important;
+  background: var(--c-bg-deep) !important;
+}
+
+.dropbox-marker {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  border: 3px solid var(--c-bg);
+  box-shadow: 0 2px 6px rgba(31, 42, 28, 0.25);
+  position: relative;
+}
+
+.dropbox-marker::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 8px solid var(--c-accent);
+}
+
+.dropbox-popup .leaflet-popup-content-wrapper {
+  background: var(--c-bg);
+  border: 1px solid var(--c-line-strong);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(31, 42, 28, 0.12);
+}
+
+.dropbox-popup .leaflet-popup-content {
+  margin: var(--space-4);
+  font-family: var(--font-body);
+  color: var(--c-ink);
+}
+
+.dropbox-popup .leaflet-popup-tip { background: var(--c-bg); }
+
+/* ----------------------------------------------------------------------------
+   PAGE LOAD ANIMATION (subtle, single orchestrated reveal)
+---------------------------------------------------------------------------- */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.rise { animation: rise 0.7s ease-out both; }
+.rise-1 { animation-delay: 0s; }
+.rise-2 { animation-delay: 0.12s; }
+.rise-3 { animation-delay: 0.24s; }
+.rise-4 { animation-delay: 0.36s; }
+.rise-5 { animation-delay: 0.48s; }
+
+/* Reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
