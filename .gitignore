@@ -1,0 +1,25 @@
+# Lingkungan & rahasia
+.env
+.env.local
+*.env
+
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Node
+node_modules/
+
+# Log
+*.log
+npm-debug.log*
+
+# Build
+dist/
+build/
