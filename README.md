@@ -12,7 +12,7 @@ Limbah elektronik tidak hilang — kami buatkan jalannya pulang. EcoLoop menghub
 |---|---|
 | **Aplikasi (Frontend)** | https://ecoloop.vercel.app |
 | **API (Backend)** | https://ecoloop-api.up.railway.app/api/health |
-| **Repositori kode** | [github.com/USERNAME/ecoloop](https://github.com/USERNAME/ecoloop) |
+| **Repositori kode** | [github.com/poggymacello/ecoloop](https://github.com/poggymacello/ecoloop) |
 
 > Ganti URL di atas setelah deploy selesai.
 
